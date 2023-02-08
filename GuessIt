@@ -1,0 +1,47 @@
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+int generateNumber()
+{
+    int a=0+rand()%(100+1-0);
+    return a;
+}
+int printGuess()
+{
+    int guess;
+    cout<<"Enter your guess(from 0 to 100):";
+    cin>>guess;
+    if(!cin.good()) exit(1);
+    return guess;
+}
+void printAnswer(int guess,int secretNumber)
+{
+    if(guess>secretNumber)
+    {
+        cout<<"OMG it's too big!"<<endl;
+        printGuess;
+    }
+    else if(guess<secretNumber)
+    {
+        cout<<"OMG it's too small!"<<endl;
+        printGuess;
+    }
+    else
+        cout<<"You have won!";
+}
+int main(int argc, char* argv[])
+{
+    srand((int)time(0));
+    int secretNumber=generateNumber();
+    int guess;
+    int dem=0;
+    do {
+        dem++;
+        cout<<"Round:"<<dem<<endl;
+        guess=printGuess();
+        printAnswer(guess,secretNumber);
+       } while(guess!=secretNumber);
+    return 0;
+}
