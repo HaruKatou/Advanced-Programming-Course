@@ -1,0 +1,138 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <vector>
+using namespace std;
+
+const int MAX_BAD_GUESSES = 7;
+
+const string Word_List[]={"plot","boat","knee","car","spot","name","water","judge","mint","wheel","current","bait","stew","creature","machine","flame","foot","unit","cobweb","zephyr"};
+
+const string FIGURE[] = {
+         "   -------------    \n"
+         "   |                \n"
+         "   |                \n"
+         "   |                \n"
+         "   |                \n"
+         "   |     \n"
+         " -----   \n",
+
+         "   -------------    \n"
+         "   |           |    \n"
+         "   |                \n"
+         "   |                \n"
+         "   |                \n"
+         "   |     \n"
+         " -----   \n",
+
+         "   -------------    \n"
+         "   |           |    \n"
+         "   |           O    \n"
+         "   |                \n"
+         "   |                \n"
+         "   |     \n"
+         " -----   \n",
+         "   -------------    \n"
+         "   |           |    \n"
+         "   |           O    \n"
+         "   |           |    \n"
+         "   |                \n"
+         "   |     \n"
+         " -----   \n",
+
+         "   -------------    \n"
+         "   |           |    \n"
+         "   |           O    \n"
+         "   |          /|    \n"
+         "   |                \n"
+         "   |     \n"
+         " -----   \n",
+
+         "   -------------    \n"
+         "   |           |    \n"
+         "   |           O    \n"
+         "   |          /|\\  \n"
+         "   |                \n"
+         "   |     \n"
+         " -----   \n",
+     "   -------------    \n"
+         "   |           |    \n"
+         "   |           O    \n"
+         "   |          /|\\  \n"
+         "   |          /     \n"
+         "   |     \n"
+         " -----   \n",
+
+         "   -------------    \n"
+         "   |           |    \n"
+         "   |           O    \n"
+         "   |          /|\\  \n"
+         "   |          / \\  \n"
+         "   |     \n"
+         " -----   \n",
+};
+
+
+string chooseWord()
+{
+    int ran=rand()%20;
+    return Word_List[ran];
+}
+
+
+void render(string guessedWord, int badGuess)   //hiển thị tình hình trò chơi
+{
+    cout<<FIGURE[badGuess]<<endl;
+    cout<<"-------------------------------------------------------------------------"<<endl<<endl;
+    cout<<"Your word is:"<<guessedWord<<endl;
+    cout<<"Number of wrong moves:"<<badGuess<<"/"<<7<<endl;
+}
+
+void StartGuess(char &guess)    //Người chơi nhập số cần đoán
+{
+    cout<<"Enter your guess:";
+    cin>>guess;
+}
+
+bool contain(string secretWord, char guess)  //kiểm tra từ đó có xuất hiện không
+{
+    int len=secretWord.length();
+    for(int i=0;i<len;i++)
+        if(secretWord[i]==guess || secretWord[i]==guess-32 || secretWord[i]==guess+32)
+            return true;
+    return false;
+}
+
+void update(string &guessedWord,string secretWord,char guess)  //cập nhật dãy cần đoán
+{
+    int len=secretWord.length();
+    for(int i=0;i<len;i++)
+        if(guess==secretWord[i])
+            guessedWord[i]=guess;
+}
+
+int main()
+{
+   srand((int)time(0));
+   string secretWord=chooseWord(); //sinh so ngau nhien
+   string guessedWord = string(secretWord.length(), '-');
+   int badGuess=0;
+   char guess;
+   do
+   {
+       render(guessedWord,badGuess);
+       StartGuess(guess);
+       if(contain(secretWord,guess))
+            update(guessedWord,secretWord,guess);
+       else
+            badGuess++;
+   }while(badGuess<MAX_BAD_GUESSES && guessedWord!=secretWord);
+   if(badGuess<MAX_BAD_GUESSES)
+        cout<<"Congratulations! YOU JUST WON THE GAME!";
+   else
+    {
+        render(guessedWord,MAX_BAD_GUESSES);
+        cout<<"You lost"<<endl;
+        cout<<"The correct word is:"<<secretWord;
+    }
+}
