@@ -1,0 +1,120 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+void docdonvi(int c){
+        switch(c)
+        {
+
+                        case 1:cout<< "one "; break;
+                        case 2:cout<< "two ";break;
+                        case 3:cout<< "three ";break;
+                        case 4:cout<< "four ";break;
+                        case 5:cout<<"five ";break;
+                        case 6:cout<< "six "; break;
+                        case 7:cout<< "seven ";break;
+                        case 8:cout<< "eight "; break;
+                        case 9: cout<<"nine "; break;
+        }
+}
+void hangchuc_teen(int c)
+{
+    switch(c)
+    {
+                        case 0:cout<<"ten ";break;
+                        case 1:cout<< "eleven "; break;
+                        case 2:cout<< "twelve ";break;
+                        case 3:cout<< "thirteen ";break;
+                        case 4:cout<< "fourteen ";break;
+                        case 5:cout<<"fifteen ";break;
+                        case 6:cout<< "sixteen "; break;
+                        case 7:cout<< "seventeen ";break;
+                        case 8:cout<< "eightteen "; break;
+                        case 9: cout<<"nineteen "; break;
+    }
+}
+void hangchuc(int c)
+{
+    switch(c)
+    {
+
+                        case 2:cout<< "twenty";break;
+                        case 3:cout<< "thirty";break;
+                        case 4:cout<< "forty";break;
+                        case 5:cout<<"fifty";break;
+                        case 6:cout<< "sixty"; break;
+                        case 7:cout<< "seventy";break;
+                        case 8:cout<< "eighty"; break;
+                        case 9: cout<<"ninety"; break;
+    }
+}
+void doc_3so(int a,int b,int c)
+{
+    if(a!=0)
+    {
+        docdonvi(a);
+        cout<<"hundred ";
+    }
+    if(b==1)
+    {
+        hangchuc_teen(c);
+    }
+    if(b==0)
+    {
+        if(c!=0)
+            docdonvi(c);
+    }
+    if(b>1)
+    {
+        hangchuc(b);
+        if(c!=0)
+        {   cout<<'-';
+            docdonvi(c);
+        }
+    }
+}
+bool tontai_3so(int a,int b,int c)
+{
+    if(a==0 && b==0 && c==0)
+        return false;
+    else
+        return true;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int a,b,c,d,e,f,g,h,i;
+    if(n<0)
+    {
+        cout<<"negative ";
+        n=-n;
+    }
+    a=n/100000000;
+    n=n-a*100000000;
+    b=n/10000000;
+    n=n-b*10000000;
+    c=n/1000000;
+    n=n-c*1000000;
+    d=n/100000;
+    n=n-d*100000;
+    e=n/10000;
+    n=n-e*10000;
+    f=n/1000;
+    n=n-f*1000;
+    g=n/100;
+    n=n-g*100;
+    h=n/10;
+    n=n-h*10;
+    i=n;
+
+  doc_3so(a,b,c);
+  if(tontai_3so(a,b,c)==true)
+    cout<<"million ";
+  doc_3so(d,e,f);
+  if(tontai_3so(d,e,f)==true)
+    cout<<"thousand ";
+  doc_3so(g,h,i);
+}
+
+
+
