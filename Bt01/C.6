@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <algorithm>
+#include <math.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int init=0;
+    int temp=1;
+    for(int j=1;j<=n;j++)
+    {
+        int dem=0;
+        init++;
+        for(int i=init;i<=n;i++)
+        {
+            cout<<i<<" ";
+            dem++;
+            if(dem!=n && i==n)
+                while(dem!=n)
+            {
+                cout<<temp<<" ";
+                temp++;
+                dem++;
+            }
+        }
+        dem=0;
+        temp=1;
+        cout<<endl;
+    }
+}
