@@ -1,0 +1,24 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <vector>
+using namespace std;
+//C1 tìm lặp
+bool isDoixung(string xau)
+{
+    int len=xau.length();
+    if(len%2==0)
+        return false;
+    else
+        for(int i=0;i<len/2;i++)
+            if(xau[i]!=xau[len-i-1])
+                return false;
+    return true;
+}
+
+int main()
+{
+    string n;
+    cin>>n;
+    cout<<isDoixung(n);
+}
