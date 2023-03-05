@@ -1,0 +1,27 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <vector>
+using namespace std;
+void printRow(int m, int n)
+{
+    for(int i=1;i<=m;i++)
+        cout<<' ';
+    for(int j=1;j<=n;j++)
+        cout<<'*';
+    for(int i=1;i<=m;i++)
+        cout<<' ';
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int k=1;
+    for(int i=n;i>=1;i--)
+    {
+        printRow(i-1,k);
+        k=k+2;
+        cout<<endl;
+    }
+
+}
