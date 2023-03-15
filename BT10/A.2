@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Point
+{
+    double x;
+    double y;
+};
+void print1(Point point)
+{
+    cout<<&point;
+}
+void print2(Point &point)
+{
+    cout<<&point;
+}
+
+int main()
+{
+    Point point;
+    point.x = 2;
+    point.y = 4;
+    print1(point);
+    cout<<endl;
+    print2(point);
+}
