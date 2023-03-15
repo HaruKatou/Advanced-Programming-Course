@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Point
+{
+    double x;
+    double y;
+    Point(double _x, double _y);
+    Point();
+};
+
+Point::Point(double _x, double _y)
+    {
+        x = _x;
+        y = _y;
+    };
+    
+Point::Point()
+{};
+
+void print(Point point)
+{
+    cout<<point.x<<','<<point.y;
+}
+
+
+Point mid_point(const Point &point1, const Point &point2)
+{
+    Point mid;
+    mid.x = (double)(point1.x + point2.x)/2;
+    mid.y = (double)(point1.y + point2.y)/2;
+    return mid;
+}
+
+int main()
+{
+    Point point1(2,4);
+    Point point2(3,5);
+    print(mid_point(point1,point2));
+}
