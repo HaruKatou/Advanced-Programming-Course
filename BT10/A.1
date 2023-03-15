@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Point
+{
+    double x;
+    double y;
+};
+void print(Point point)
+{
+    cout<<point.x<<','<<point.y;
+}
+
+int main()
+{
+    Point point;
+    point.x = 2;
+    point.y = 4;
+    print(point);
+}
